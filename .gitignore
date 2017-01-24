@@ -1,3 +1,7 @@
+# Anything
+/nb-configuration.xml
+/target/
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

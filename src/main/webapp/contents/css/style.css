@@ -1,0 +1,125 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+* {
+margin:0;
+padding:0;
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+.image {
+    width: 30%;
+    height: 50%;
+}
+
+html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+
+#logo-container {
+    margin-left: 47%;
+}
+
+.total-style {
+    background-color: #E3F2FD;
+    font-weight: bold;
+}
+
+body {
+
+}
+
+.container {
+    background-attachment: scroll;
+    background-position: 50% 26%;
+    background-clip: initial;
+    width: 100%;
+    margin:0%;
+    padding-top: 0.5%;
+    padding-bottom: 0;
+    padding-left: 1.5%;
+    padding-right: -10%;
+}
+
+#logo {
+  width: 120px;
+  height: 100px;
+  margin-top: -4.5px;
+  margin-bottom: -4.5px;
+  margin-left: -5px;
+  margin-right: -5px;
+  padding-top: 0; 
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  z-index: 9999;
+}
+
+#titulo {
+  margin-top: 20px;
+  margin-bottom: -15px;
+  margin-left: -30px;
+  margin-right: -30px;
+  padding-top: 0; 
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  text-height: auto;
+  font-weight: bold;
+}
+
+.view {
+	background: url("../img/bg.jpg")no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100vh;
+}
+
+.full-bg-img {
+	color: #fff;
+}
+
+.title {
+	font-weight:100;
+}
+
+.payment .fa:not(:first-child) {
+	margin-left:10px;
+	color:rgba(255,255,255,.8);
+}
+
+input[type="text"]:focus:not([readonly]) {
+	border-color:#C00;
+	box-shadow:0 1px 0 0 #C00;
+	color:#fff;
+}
+
+input[type="text"]:not([readonly])+label {
+	color:rgba(255,255,255,.65);
+}
+
+input[type="text"]:focus:not([readonly])+label {
+	color:#fff;
+}
+
+.row-highlight-color {
+    background-color: #FF3232;
+    color: white;
+}
+
+.row-normal-color {
+    background-color: #C0C0C0;
+}

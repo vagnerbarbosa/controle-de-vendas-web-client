@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+    <head jsf:id="head">
+
+        <meta jsf:charset="utf-8"/>
+        <meta jsf:name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+        <title>#{title}</title>
+
+        <link jsf:name="contents/img/logolrp.ico" rel="shortcut icon" href="contents/img/logolrp.ico" />
+        <link jsf:name="contents/css/font-awesome.min.css" rel="stylesheet" href="contents/css/font-awesome.min.css" />        
+        <link jsf:name="contents/css/bootstrap.min.css" rel="stylesheet" href="contents/css/bootstrap.min.css" />        
+        <link jsf:name="contents/css/mdb.min.css" rel="stylesheet" href="contents/css/mdb.min.css" />        
+        <link jsf:name="contents/css/style.css" rel="stylesheet" href="contents/css/style.css" />
+        <link rel="stylesheet" href="contents/css/lib/getmdl-select.min.css"></link>
+        <link rel="stylesheet" href="contents/css/lib/nv.d3.css"></link>
+        <link rel="stylesheet" href="contents/css/application.css"></link>
+
+    </head>
+    <body jsf:id="body">
+
+        <header jsf:id="header">
+            <nav class="navbar navbar-dark bg-primary" jsf:id="nav-blue">
+                <div>
+                    <a href="#{request.contextPath}/home" class="navbar-brand"><img id="logo" src="contents/img/logolrp.svg" alt="Logo Lojao Rio do Peixe"/></a>                
+                    <ul class="nav navbar-nav">
+                        <li class="nav-link text-xl-left"><h1 class="h1-responsive" style="color: #FFFFFF" id="titulo" >Lojão Rio do Peixe - #{title}</h1></li>
+                    </ul>
+                </div>
+            </nav>
+        </header> 
+        
+        <main class="mdl-layout__content" style="width: 100%; height: 100%;">
+
+            <div style="padding-left: 1.5%; padding-top: 1%; padding-right: 1%; background: rgba(255, 255, 255, 0.75)">
+
+                <h:dataTable id="poll" class="table table-bordered table-striped table-sm" style="font-size: 86%;" value="#{barChartDataBean.vendas}" var="s" width="100%" >
+
+                    <h:column>
+                        <f:facet name="header"><span style="text-align: center;">FILIAL</span></f:facet>
+                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;">#{s.branchNumber}</span>
+                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;">#</span></f:facet>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet class="text-lg-center" name="header"><span style="text-align: center;">NOME FILIAL</span></f:facet>
+                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;">#{s.trade}</span>
+                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;">TOTAIS</span></f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet class="text-lg-center" name="header">VALOR BRUTO PRODUTOS</f:facet>
+                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.prodSaleTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
+                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodSaleTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet class="text-lg-center" name="header">TOTAL DEVOLVIDO PRODUTOS</f:facet>
+                        <span class="text-lg-center" style="color: red; font-weight: bold;"><h:outputText value="#{s.prodDevolutionTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
+                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodDevolutionTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA PRODUTOS</f:facet>
+                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.prodBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
+                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA SERVIÇOS</f:facet>
+                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.servBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
+                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.servBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA RECARGAS</f:facet>
+                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.rechargeTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
+                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.rechargeTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA TOTAL</f:facet>
+                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.balanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
+                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.balanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                    </h:column>
+                </h:dataTable> 
+
+            </div>           
+
+        <script type="text/javascript" src="contents/js/utils.js"></script>        
+        <script type="text/javascript" src="contents/js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="contents/js/tether.min.js"></script>
+        <script type="text/javascript" src="contents/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="contents/js/mdb.min.js"></script>
+        <script type="text/javascript" src="contents/js/tether.min.js"></script>
+        <script type="text/javascript" src="contents/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="contents/js/mdb.min.js"></script>
+</main>
+    </body>
+</html>        
