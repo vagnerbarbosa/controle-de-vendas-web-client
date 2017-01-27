@@ -2,7 +2,6 @@ package com.vagnerbarbosa.termometro.vendas.web.datasource;
 
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
  
@@ -16,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import org.springframework.security.core.GrantedAuthority;
 
  
 @Entity

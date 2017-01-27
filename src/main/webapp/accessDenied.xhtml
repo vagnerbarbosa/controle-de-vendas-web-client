@@ -47,7 +47,7 @@
                     <div class="mdl-layout-spacer">LRP - #{title}</div>
 
                     <div class="avatar-dropdown" id="icon">
-                        <span>#{currentUser.firstName}</span>
+                        <span>#{name}</span>
                         <img src="contents/img/Icon_header.png"/>
                     </div>
                     <!-- Account dropdawn-->
@@ -55,8 +55,8 @@
                         <li class="mdl-list__item mdl-list__item--two-line">
                             <span class="mdl-list__item-primary-content">
                                 <span class="material-icons mdl-list__item-avatar"></span>
-                                <span>#{user}</span>
-                                <span class="mdl-list__item-sub-title">#{user}@#{user}.com</span>
+                                <span>#{name} #{surname}</span>
+                                <span class="mdl-list__item-sub-title">#{email}</span>
                             </span>
                         </li>
 
@@ -81,7 +81,7 @@
                             <h2 class="mdl-card__title-text" style="a:link, a:visited, a:hover, a:active {text-decoration: none}">Aviso!</h2>
                         </div>
                         <div class="mdl-card__supporting-text " style="height: 25%;">
-                            <h1 class="h1-responsive wow fadeInUp title" style="font-weight: bold; text-align: center;">Prezado <strong>#{currentUser.LastName}</strong>, me desculpe, você não tem autorização para acessar essa página! :(</h1>
+                            <h1 class="h1-responsive wow fadeInUp title" style="font-weight: bold; text-align: center;">Prezado <strong>#{name}</strong>, me desculpe, você não tem autorização para acessar essa página! :(</h1>
                         </div>
                     </div>
                 </div>                

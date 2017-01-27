@@ -21,6 +21,10 @@ public class PageController {
     public String homePage(ModelMap model) {
         model.addAttribute("title", "Painel Administrativo");
         model.addAttribute("user", getPrincipal().getUsername());
+        model.addAttribute("name", getPrincipal().getFirstName());
+        model.addAttribute("surname", getPrincipal().getLastName());
+        model.addAttribute("email", getPrincipal().getEmail());
+        model.addAttribute("filial", getPrincipal().getLounge());
         return "welcome";
     }
     
@@ -28,6 +32,10 @@ public class PageController {
     public String salePage(ModelMap model) {
         model.addAttribute("title", "Mapa de Vendas");
         model.addAttribute("user", getPrincipal().getUsername());
+        model.addAttribute("name", getPrincipal().getFirstName());
+        model.addAttribute("surname", getPrincipal().getLastName());
+        model.addAttribute("email", getPrincipal().getEmail());
+        model.addAttribute("filial", getPrincipal().getLounge());
         return "salePage";
     }
 
@@ -35,6 +43,9 @@ public class PageController {
     public String saleChartPage(ModelMap model) {
         model.addAttribute("title", "Controle de Entregas e Montagens");
         model.addAttribute("user", getPrincipal().getUsername());
+        model.addAttribute("name", getPrincipal().getFirstName());
+        model.addAttribute("surname", getPrincipal().getLastName());
+        model.addAttribute("email", getPrincipal().getEmail());
         model.addAttribute("filial", getPrincipal().getLounge());
         return "saleChart";
     }      
@@ -42,12 +53,20 @@ public class PageController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
         model.addAttribute("user", getPrincipal().getUsername());
+        model.addAttribute("name", getPrincipal().getFirstName());
+        model.addAttribute("surname", getPrincipal().getLastName());
+        model.addAttribute("email", getPrincipal().getEmail());
+        model.addAttribute("filial", getPrincipal().getLounge());
         return "admin";
     }
      
     @RequestMapping(value = "/db", method = RequestMethod.GET)
     public String dbaPage(ModelMap model) {
         model.addAttribute("user", getPrincipal().getUsername());
+        model.addAttribute("name", getPrincipal().getFirstName());
+        model.addAttribute("surname", getPrincipal().getLastName());
+        model.addAttribute("email", getPrincipal().getEmail());
+        model.addAttribute("filial", getPrincipal().getLounge());
         return "dba";
     }
  
@@ -55,6 +74,10 @@ public class PageController {
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("title", "Acesso não permitido");
         model.addAttribute("user", getPrincipal().getUsername());
+        model.addAttribute("name", getPrincipal().getFirstName());
+        model.addAttribute("surname", getPrincipal().getLastName());
+        model.addAttribute("email", getPrincipal().getEmail());
+        model.addAttribute("filial", getPrincipal().getLounge());
         return "accessDenied";
     }
  

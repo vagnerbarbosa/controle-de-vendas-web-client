@@ -6,7 +6,7 @@
 	<title>HelloWorld Admin page</title>
 </head>
 <body>
-	Dear <strong>${user}</strong>, Welcome to Admin Page.
+	Dear <strong>${name}</strong>, Welcome to Admin Page.
         <c:forEach var="pedidos" items="${controlePedidosManagedBean.pedidos}">
         <c:out value="${pedidos.idSalesOrder}"/>
         <c:out value="${pedidos.clientName}"/>
