@@ -1,5 +1,7 @@
-package com.websystique.springsecurity.controller;
+package com.vagnerbarbosa.termometro.vendas.web.springsecurity;
 
+import com.vagnerbarbosa.termometro.vendas.web.datasource.CustomUserDetails;
+import com.vagnerbarbosa.termometro.vendas.web.datasource.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,40 +21,40 @@ public class PageController {
     @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
     public String homePage(ModelMap model) {
         model.addAttribute("title", "Painel Administrativo");
-        model.addAttribute("user", getPrincipal());
+        model.addAttribute("user", getPrincipal().getUsername());
         return "welcome";
     }
     
     @RequestMapping(value = { "/vendas" }, method = RequestMethod.GET)
     public String salePage(ModelMap model) {
         model.addAttribute("title", "Mapa de Vendas");
-        model.addAttribute("user", getPrincipal());
+        model.addAttribute("user", getPrincipal().getUsername());
         return "salePage";
     }
 
    @RequestMapping(value = { "/controle" }, method = RequestMethod.GET)
     public String saleChartPage(ModelMap model) {
         model.addAttribute("title", "Controle de Entregas e Montagens");
-        model.addAttribute("user", getPrincipal());
+        model.addAttribute("user", getPrincipal().getUsername());
         return "saleChart";
     }      
  
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal());
+        model.addAttribute("user", getPrincipal().getUsername());
         return "admin";
     }
      
     @RequestMapping(value = "/db", method = RequestMethod.GET)
     public String dbaPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal());
+        model.addAttribute("user", getPrincipal().getUsername());
         return "dba";
     }
  
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("title", "Acesso não permitido");
-        model.addAttribute("user", getPrincipal());
+        model.addAttribute("user", getPrincipal().getUsername());
         return "accessDenied";
     }
  
@@ -70,14 +72,13 @@ public class PageController {
         return "redirect:/login?logout";
     }
  
-    private String getPrincipal(){
-        String userName = null;
+    private UserDetails getPrincipal(){
+        UserDetails userName = null;       
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
- 
         if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
+            userName = ((UserDetails)principal);
         } else {
-            userName = principal.toString();
+            //userName = principal.toString();
         }
         return userName;
     }

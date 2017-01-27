@@ -23,7 +23,7 @@ public class VendasResourceManagedBean implements Serializable {
     
     public List<Sales> getVendas() throws IOException {
         Client c = Client.create();
-        WebResource wr = c.resource("http://192.168.18.250:8080/sales-weather/webservice/sales/");
+        WebResource wr = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales/");
         String json = wr.get(String.class);
         return (List<Sales>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("salesList", mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(List.class, Sales.class)));
     }

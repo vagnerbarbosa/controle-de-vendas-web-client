@@ -1,4 +1,4 @@
-package com.websystique.springsecurity.configuration;
+package com.vagnerbarbosa.termometro.vendas.web.springsecurity;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

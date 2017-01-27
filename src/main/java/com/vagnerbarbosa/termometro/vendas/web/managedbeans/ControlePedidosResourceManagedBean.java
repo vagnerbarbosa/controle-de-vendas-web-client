@@ -3,6 +3,9 @@ package com.vagnerbarbosa.termometro.vendas.web.managedbeans;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
+import com.vagnerbarbosa.termometro.vendas.web.datasource.User;
+import com.vagnerbarbosa.termometro.vendas.web.datasource.UserDao;
+import com.vagnerbarbosa.termometro.vendas.web.datasource.UserDaoImpl;
 import com.vagnerbarbosa.termometro.vendas.web.model.Product;
 import com.vagnerbarbosa.termometro.vendas.web.model.SalesOrder;
 import java.io.IOException;
@@ -25,17 +28,19 @@ public class ControlePedidosResourceManagedBean implements Serializable {
     private List<SalesOrder> listSalesOrder = null;
     private List<Product> listSalesProducts = null;
     private List<Product> prdAux = null;
-    private String teste = null;     
+    private UserDao userService = new UserDaoImpl();
     
-    public List<SalesOrder> getPedidos(String filial) throws IOException {
+    public List<SalesOrder> getPedidos() throws IOException {
         Client c = Client.create();
         listSalesOrder = new ArrayList<>();
         listSalesProducts = new ArrayList<>();
+        
+        //user = userService.findBySSO("john");
 
-        WebResource wr1 = c.resource("http://192.168.18.250:8080/sales-weather/webservice/sales-order/" + Integer.valueOf(filial.substring(1)));
+        WebResource wr1 = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales-order/" + 1);
         String jsonSales = wr1.get(String.class);
 
-        WebResource wr2 = c.resource("http://192.168.18.250:8080/sales-weather/webservice/sales-order/products/" + Integer.valueOf(filial.substring(1)));
+        WebResource wr2 = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales-order/products/" + 1);
         String jsonProducts = wr2.get(String.class);
 
         listSalesOrder = mapper.readValue(jsonSales, mapper.getTypeFactory().constructCollectionType(List.class, SalesOrder.class));
@@ -55,14 +60,6 @@ public class ControlePedidosResourceManagedBean implements Serializable {
         }
         
         return (List<SalesOrder>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("salesOrder", listSalesOrder); 
-    } 
-
-    public String getTeste() {
-        return teste;
-    }
-
-    public void setTeste(String teste) {
-        this.teste = teste;
-    }    
+    }   
     
 }
