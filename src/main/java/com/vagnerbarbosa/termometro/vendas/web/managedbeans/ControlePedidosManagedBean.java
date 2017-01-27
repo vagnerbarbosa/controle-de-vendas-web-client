@@ -50,6 +50,8 @@ public class ControlePedidosManagedBean implements Serializable {
             colorFlag = "background-color: red;";            
         } else if ("Não Há Entrega".equals(deliverSituation)) {
             colorFlag = "background-color: #DEE8F6;";
+        } else {
+            colorFlag = "background-color: #DEE8F6;";
         }
          
         return colorFlag;
