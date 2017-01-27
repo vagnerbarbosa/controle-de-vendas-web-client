@@ -3,7 +3,6 @@ package com.vagnerbarbosa.termometro.vendas.web.managedbeans;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
-import com.vagnerbarbosa.termometro.vendas.web.datasource.User;
 import com.vagnerbarbosa.termometro.vendas.web.datasource.UserDao;
 import com.vagnerbarbosa.termometro.vendas.web.datasource.UserDaoImpl;
 import com.vagnerbarbosa.termometro.vendas.web.model.Product;
@@ -30,17 +29,17 @@ public class ControlePedidosResourceManagedBean implements Serializable {
     private List<Product> prdAux = null;
     private UserDao userService = new UserDaoImpl();
     
-    public List<SalesOrder> getPedidos() throws IOException {
+    public List<SalesOrder> getPedidos(Integer filial) throws IOException {
         Client c = Client.create();
         listSalesOrder = new ArrayList<>();
         listSalesProducts = new ArrayList<>();
         
         //user = userService.findBySSO("john");
 
-        WebResource wr1 = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales-order/" + 1);
+        WebResource wr1 = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales-order/" + filial);
         String jsonSales = wr1.get(String.class);
 
-        WebResource wr2 = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales-order/products/" + 1);
+        WebResource wr2 = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales-order/products/" + filial);
         String jsonProducts = wr2.get(String.class);
 
         listSalesOrder = mapper.readValue(jsonSales, mapper.getTypeFactory().constructCollectionType(List.class, SalesOrder.class));

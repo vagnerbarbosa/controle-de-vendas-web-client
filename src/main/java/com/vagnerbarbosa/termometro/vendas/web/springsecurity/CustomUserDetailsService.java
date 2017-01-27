@@ -34,8 +34,10 @@ public class CustomUserDetailsService implements UserDetailsService{
             throw new UsernameNotFoundException("Username not found");
         }
             //return new CustomUserDetails(user.getSsoId(), user.getPassword(), user.getState().equals("Active"), true, true, true, getGrantedAuthorities(user), user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getLounge());
-            return new org.springframework.security.core.userdetails.User(user.getSsoId(), user.getPassword(), 
-                 user.getState().equals("Active"), true, true, true, getGrantedAuthorities(user));
+            CustomUserDetails userDetails = new CustomUserDetails(user.getSsoId(), user.getPassword(), user.getState().equals("Active"), true, true, true, getGrantedAuthorities(user), user.getLounge());
+            //return new org.springframework.security.core.userdetails.User(user.getSsoId(), user.getPassword(), 
+             //    user.getState().equals("Active"), true, true, true, getGrantedAuthorities(user));
+             return  userDetails;
     }
  
     private List<GrantedAuthority> getGrantedAuthorities(User user){

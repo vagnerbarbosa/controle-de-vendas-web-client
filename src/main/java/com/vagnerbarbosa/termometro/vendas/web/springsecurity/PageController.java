@@ -1,7 +1,6 @@
 package com.vagnerbarbosa.termometro.vendas.web.springsecurity;
 
 import com.vagnerbarbosa.termometro.vendas.web.datasource.CustomUserDetails;
-import com.vagnerbarbosa.termometro.vendas.web.datasource.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,6 +35,7 @@ public class PageController {
     public String saleChartPage(ModelMap model) {
         model.addAttribute("title", "Controle de Entregas e Montagens");
         model.addAttribute("user", getPrincipal().getUsername());
+        model.addAttribute("filial", getPrincipal().getLounge());
         return "saleChart";
     }      
  
@@ -72,11 +72,11 @@ public class PageController {
         return "redirect:/login?logout";
     }
  
-    private UserDetails getPrincipal(){
-        UserDetails userName = null;       
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    private CustomUserDetails getPrincipal(){       
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+        CustomUserDetails userName = null;
         if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal);
+            userName = ((CustomUserDetails)principal);
         } else {
             //userName = principal.toString();
         }
