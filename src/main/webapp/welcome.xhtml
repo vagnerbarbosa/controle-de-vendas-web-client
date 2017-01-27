@@ -61,10 +61,12 @@
                         </li>
 
                         <li class="mdl-menu__item mdl-list__item" >
+                            <a style="a:link { text-decoration:none;}" href="#{request.contextPath}/logout">
                             <span class="mdl-list__item-primary-content" >
                                 <i class="material-icons mdl-list__item-icon text-color--secondary">exit_to_app</i>
-                                <a href="#{request.contextPath}/logout">Log out</a>
+                                Log out
                             </span>
+                            </a>    
                         </li>
                     </ul>
 
@@ -83,7 +85,7 @@
                         <div class="mdl-card__supporting-text ">
                             <div style="margin-left: 2.5%; margin-top: 0%; margin-right: 0%; width: 98%;">
 
-                                <h:dataTable id="poll" class="table table-bordered table-striped table-sm" style="font-size: 84%; " value="#{pieChartDataBean.vendas}" var="s" width="100%" >
+                                <h:dataTable id="poll" class="table table-bordered table-striped table-sm" style="font-size: 86%;" value="#{barChartDataBean.vendas}" var="s" width="100%" >
 
                                     <h:column>
                                         <f:facet name="header"><span style="text-align: center;">FILIAL</span></f:facet>
@@ -99,32 +101,32 @@
                                     <h:column>
                                         <f:facet class="text-lg-center" name="header">VALOR BRUTO PRODUTOS</f:facet>
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.prodSaleTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{PieChartDataBean.vendas.stream().map(s->s.prodSaleTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodSaleTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </h:column>
                                     <h:column>
                                         <f:facet class="text-lg-center" name="header">TOTAL DEVOLVIDO PRODUTOS</f:facet>
                                         <span class="text-lg-center" style="color: red; font-weight: bold;"><h:outputText value="#{s.prodDevolutionTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{PieChartDataBean.vendas.stream().map(s->s.prodDevolutionTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodDevolutionTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </h:column>
                                     <h:column>
                                         <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA PRODUTOS</f:facet>
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.prodBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{PieChartDataBean.vendas.stream().map(s->s.prodBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </h:column>
                                     <h:column>
                                         <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA SERVIÇOS</f:facet>
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.servBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{PieChartDataBean.vendas.stream().map(s->s.servBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.servBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </h:column>
                                     <h:column>
                                         <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA RECARGAS</f:facet>
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.rechargeTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{PieChartDataBean.vendas.stream().map(s->s.rechargeTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.rechargeTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </h:column>
                                     <h:column>
                                         <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA TOTAL</f:facet>
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.balanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{PieChartDataBean.vendas.stream().map(s->s.balanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.balanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </h:column>
                                 </h:dataTable> 
 

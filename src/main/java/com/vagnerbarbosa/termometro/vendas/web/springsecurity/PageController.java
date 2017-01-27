@@ -49,27 +49,7 @@ public class PageController {
         model.addAttribute("filial", getPrincipal().getLounge());
         return "saleChart";
     }      
- 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String adminPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal().getUsername());
-        model.addAttribute("name", getPrincipal().getFirstName());
-        model.addAttribute("surname", getPrincipal().getLastName());
-        model.addAttribute("email", getPrincipal().getEmail());
-        model.addAttribute("filial", getPrincipal().getLounge());
-        return "admin";
-    }
      
-    @RequestMapping(value = "/db", method = RequestMethod.GET)
-    public String dbaPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal().getUsername());
-        model.addAttribute("name", getPrincipal().getFirstName());
-        model.addAttribute("surname", getPrincipal().getLastName());
-        model.addAttribute("email", getPrincipal().getEmail());
-        model.addAttribute("filial", getPrincipal().getLounge());
-        return "dba";
-    }
- 
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("title", "Acesso não permitido");

@@ -43,21 +43,21 @@
                                 <li>
                                     <c:if test="${param.error != null}">
                                         <div >
-                                            <p><h1 class="h1-responsive wow fadeInUp title"><span class="alert alert-danger">Filial ou Senha inválidas!</span></h1></p>
+                                            <p><h1 class="h1-responsive wow fadeInUp title"><span class="alert alert-danger">Usuário ou Senha inválidas!</span></h1></p>
                                         </div>
                                     </c:if>
                                 </li>
                                 <li>   
                                     <c:if test="${param.logout != null}">
                                         <div >
-                                            <p><h1 class="h1-responsive wow fadeInUp title">Por gentileza, informe sua Filial e Senha.</h1></p>
+                                            <p><h1 class="h1-responsive wow fadeInUp title">Por gentileza, informe seu Usuário e Senha.</h1></p>
                                         </div>
                                     </c:if>
                                 </li>
                                 <li>
                                     <c:if test="${param.logout == null && param.error == null}">
                                         <div >
-                                            <p><h1 class="h1-responsive wow fadeInUp title">Por gentileza, informe sua Filial e Senha.</h1></p>
+                                            <p><h1 class="h1-responsive wow fadeInUp title">Por gentileza, informe seu Usuário e Senha.</h1></p>
                                         </div>
                                     </c:if>
                                 </li>
