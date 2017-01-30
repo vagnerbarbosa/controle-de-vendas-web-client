@@ -27,9 +27,10 @@ public class ControlePedidosResourceManagedBean implements Serializable {
     private List<SalesOrder> listSalesOrder = null;
     private List<Product> listSalesProducts = null;
     private List<Product> prdAux = null;
-    private UserDao userService = new UserDaoImpl();
     
     public List<SalesOrder> getPedidos(Integer filial) throws IOException {
+        List<SalesOrder> resultado = null;
+        if (resultado == null) {
         Client c = Client.create();
         listSalesOrder = new ArrayList<>();
         listSalesProducts = new ArrayList<>();
@@ -57,8 +58,9 @@ public class ControlePedidosResourceManagedBean implements Serializable {
             }
             listSalesOrder.get(i).setProducts(prdAux);
         }
-        
-        return (List<SalesOrder>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("salesOrder", listSalesOrder); 
+        resultado = (List<SalesOrder>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("salesOrder", listSalesOrder); 
+        }
+        return resultado;
     }   
     
 }

@@ -17,15 +17,19 @@ import javax.faces.context.FacesContext;
 public class VendasResourceManagedBean implements Serializable {
     
     ObjectMapper mapper = new ObjectMapper();
+    List<Sales> vendas = null;
 
     public VendasResourceManagedBean() {
     }
     
     public List<Sales> getVendas() throws IOException {
+        if (vendas == null) {
         Client c = Client.create();
         WebResource wr = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales/");
         String json = wr.get(String.class);
-        return (List<Sales>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("salesList", mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(List.class, Sales.class)));
+        this.vendas = (List<Sales>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("salesList", mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(List.class, Sales.class)));
+        }
+        return vendas;
     }
 
     public ObjectMapper getMapper() {
