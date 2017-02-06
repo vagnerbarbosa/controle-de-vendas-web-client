@@ -123,3 +123,8 @@ input[type="text"]:focus:not([readonly])+label {
 .row-normal-color {
     background-color: #C0C0C0;
 }
+
+.box {
+  float: left;
+
+}

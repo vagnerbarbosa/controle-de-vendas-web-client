@@ -74,18 +74,20 @@
             </header>
 
             <main class="mdl-layout__content">
-
+                <h:form>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <p:poll interval="5" listener="#{barChartDataBean.atualizaVendas}" update="poll" />
+                </h:form>
                 <!-- Mapa de Vendas -->
-                <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+                <div class="box mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                     <div class="mdl-card  ">
-                        <a href="#{request.contextPath}/vendas" >
                             <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text" style="a:link, a:visited, a:hover, a:active {text-decoration: none}">Mapa de Vendas</h2>
-                            </div></a>
+                                <h2 class="mdl-card__title-text" style="a:link, a:visited, a:hover, a:active {text-decoration: none}; font-weight: bold;">Mapa de Vendas</h2>
+                            </div>
                         <div class="mdl-card__supporting-text ">
                             <div style="margin-left: 2.5%; margin-top: 0%; margin-right: 0%; width: 98%;">
 
-                                <h:dataTable id="poll" class="table table-bordered table-striped table-sm" style="font-size: 86%;" value="#{barChartDataBean.vendas}" var="s" width="100%" >
+                                <h:dataTable id="poll" class="table table-bordered table-striped table-sm" style="font-size: 84%;" value="#{barChartDataBean.vendas}" var="s" width="100%" >
 
                                     <h:column>
                                         <f:facet name="header"><span style="text-align: center;">FILIAL</span></f:facet>
@@ -134,16 +136,12 @@
                         </div>
                     </div>
                 </div>                
-
-
-
-                <div class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
-
+                    
                     <!-- Pie chart-->
-                    <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                    <div class="box mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp pie-chart">
                             <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text">Top 3 Filiais</h2>
+                                <h2 class="mdl-card__title-text" style="font-weight: bold;">Top 3 Filiais</h2>
                             </div>
                             <div class="mdl-card__supporting-text" >
                                 <div style="margin-left: 10%;">
@@ -157,26 +155,22 @@
                     </div>
 
                     <!-- Line chart-->
-                    <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                    <div class="box mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp line-chart">
                             <a href="#{request.contextPath}/graficos" ></a>
                             <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text">Termômetro de Vendas</h2>
+                                <h2 class="mdl-card__title-text" style="font-weight: bold;">Termômetro de Vendas</h2>
                             </div>
                             <div class="mdl-card__supporting-text">
                                 <div >
-
-                                    <ct:chart id="barChart" type="bar" model="#{barChartDataBean.barChartModel}" style="width:100%; height:45%">
+                                    <ct:chart id="barChart" type="bar" model="#{barChartDataBean.barChartModel}" style="width:100%;">
                                     </ct:chart>
-
                                     <p:message id="barChartMessage" for="barChart" showDetail="true" />                                
 
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
 
             </main>
         </div>
@@ -185,9 +179,6 @@
         <script jsf:name="contents/js/getmdl-select.min.js" type="text/javascript" src="contents/js/getmdl-select.min.js"/>
         <script jsf:name="contents/js/material.js" type="text/javascript" src="contents/js/material.js"/>
         <script jsf:name="contents/js/nv.d3.js" type="text/javascript" src="contents/js/nv.d3.js"/>
-        <script jsf:name="contents/js/widgets/map/maps.js" type="text/javascript" src="contents/js/widgets/map/maps.js"/>
-        <script jsf:name="contents/js/widgets/table/table.js" type="text/javascript" src="contents/js/widgets/table/table.js"/>
-        <script jsf:name="contents/js/widgets/todo/todo.js" type="text/javascript" src="contents/js/widgets/todo/todo.js"/>
         <script jsf:name="contents/js/utils.js" type="text/javascript" src="contents/js/utils.js"/>       
         <script jsf:name="contents/js/jquery-3.1.1.min.js" type="text/javascript" src="contents/js/jquery-3.1.1.min.js"/>
         <script jsf:name="contents/js/tether.min.js" type="text/javascript" src="contents/js/tether.min.js"/>
