@@ -14,7 +14,7 @@
 
         <title>Lojão Rio do Peixe</title>
 
-        <link jsf:name="contents/img/logolrp.ico" rel="shortcut icon" href="contents/img/logolrp.ico" />
+        <link jsf:name="contents/img/DB_16?16.png" rel="icon" type="image/png" href="contents/img/DB_16?16.png"/>
         <link jsf:name="contents/css/font-awesome.min.css" rel="stylesheet" href="contents/css/font-awesome.min.css" />        
         <link jsf:name="contents/css/bootstrap.min.css" rel="stylesheet" href="contents/css/bootstrap.min.css" />        
         <link jsf:name="contents/css/mdb.min.css" rel="stylesheet" href="contents/css/mdb.min.css" />        
@@ -90,14 +90,13 @@
                 </div>
             </div>
         </div>
-                                
-        <script type="text/javascript" src="contents/js/jquery-2.2.5-pre.min.js"></script>   
+                                  
         <script type="text/javascript" src="contents/js/utils.js"></script>        
         <script type="text/javascript" src="contents/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="contents/js/tether.min.js"></script>
         <script type="text/javascript" src="contents/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="contents/js/mdb.min.js"></script>
-        <script type="text/javascript" src="contents/js/jquery-2.2.3.min.js"></script>
+        <script type="text/javascript" src="contents/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="contents/js/tether.min.js"></script>
         <script type="text/javascript" src="contents/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="contents/js/mdb.min.js"></script>                                

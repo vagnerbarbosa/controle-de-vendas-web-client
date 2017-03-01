@@ -76,7 +76,7 @@
             <main class="mdl-layout__content">
                 <h:form>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <p:poll interval="5" listener="#{barChartDataBean.atualizaVendas}" update="poll" />
+                    <p:poll interval="600" listener="#{barChartDataBean.atualizaVendas}" update="poll" />
                 </h:form>
                 <!-- Mapa de Vendas -->
                 <div class="box mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
@@ -86,7 +86,6 @@
                             </div>
                         <div class="mdl-card__supporting-text ">
                             <div style="margin-left: 2.5%; margin-top: 0%; margin-right: 0%; width: 98%;">
-
                                 <h:dataTable id="poll" class="table table-bordered table-striped table-sm" style="font-size: 84%;" value="#{barChartDataBean.vendas}" var="s" width="100%" >
 
                                     <h:column>
@@ -131,7 +130,6 @@
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.balanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </h:column>
                                 </h:dataTable> 
-
                             </div>                           
                         </div>
                     </div>
