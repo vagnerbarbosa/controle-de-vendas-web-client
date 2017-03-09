@@ -102,24 +102,23 @@
                                         <h:outputText styleClass="text-lg-center" style="color: #0059bc; font-weight: bold;" value="#{s.trade}"></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;">TOTAIS</span></f:facet>
                                     </p:column>
-                                    <p:column headerText="VAL. BRUTO PRODUTOS" style="text-align: center; font-size: 70%;" sortBy="#{s.prodSaleTotal}">
-                                        <f:facet class="text-lg-center" name="header">VALOR BRUTO PRODUTOS</f:facet>
+                                    <p:column headerText="VAL. BRUTO PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodSaleTotal}">
                                         <h:outputText styleClass="text-lg-right" style="color: #0059bc; font-weight: bold;" value="#{s.prodSaleTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodSaleTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
-                                    <p:column headerText="TOTAL DEVOL. PRODUTOS" style="text-align: center; font-size: 70%;" sortBy="#{s.prodDevolutionTotal}">
+                                    <p:column headerText="TOTAL DEVOL. PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodDevolutionTotal}">
                                         <h:outputText styleClass="text-lg-right" style="color: #0059bc; font-weight: bold;" value="#{s.prodDevolutionTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodDevolutionTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
-                                    <p:column headerText="VENDA LÍQ. PRODUTOS" style="text-align: center; font-size: 70%;" sortBy="#{s.prodBalanceTotal}">
+                                    <p:column headerText="VENDA LÍQ. PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodBalanceTotal}">
                                         <h:outputText styleClass="text-lg-right" style="color: #0059bc; font-weight: bold;" value="#{s.prodBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
-                                    <p:column headerText="VENDA LÍQ. SERVIÇOS" style="text-align: center; font-size: 70%;" sortBy="#{s.servBalanceTotal}">
+                                    <p:column headerText="VENDA LÍQ. SERV." style="text-align: center; font-size: 70%;" sortBy="#{s.servBalanceTotal}">
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.servBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.servBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
-                                    <p:column headerText="VENDA LÍQ. RECARGAS" style="text-align: center; font-size: 70%;" sortBy="#{s.rechargeTotal}">
+                                    <p:column headerText="VENDA LÍQ. RECARG." style="text-align: center; font-size: 70%;" sortBy="#{s.rechargeTotal}">
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.rechargeTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.rechargeTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
