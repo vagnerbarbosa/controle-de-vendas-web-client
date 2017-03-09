@@ -26,9 +26,9 @@ import org.chartistjsf.model.chart.BarChartSeries;
 public class BarChartDataBean implements Serializable {
 
     private BarChartModel barChartModel;
-    ObjectMapper mapper = new ObjectMapper();
     
     List<Sales> vendas = new ArrayList<>();
+    ObjectMapper mapper = new ObjectMapper();
 
     public BarChartDataBean() throws IOException {
         createBarModel();
@@ -68,7 +68,7 @@ public class BarChartDataBean implements Serializable {
     public void setBarChartModel(BarChartModel barChartModel) {
         this.barChartModel = barChartModel;
     }
-    
+
     public List<Sales> atualizaVendas() throws IOException {        
         Client c = Client.create();
         WebResource wr = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales/");
@@ -76,8 +76,8 @@ public class BarChartDataBean implements Serializable {
         this.vendas = null;
         this.vendas = (List<Sales>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("salesList", mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(List.class, Sales.class)));
         return vendas;
-    }    
-
+    }      
+    
     public List<Sales> getVendas() throws IOException {
         this.vendas = (List<Sales>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("salesList");
         return vendas;
