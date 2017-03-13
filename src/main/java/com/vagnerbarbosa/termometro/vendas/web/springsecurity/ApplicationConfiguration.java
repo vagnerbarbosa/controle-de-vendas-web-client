@@ -31,6 +31,7 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/contents/**").addResourceLocations("/contents/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }        
 
 }

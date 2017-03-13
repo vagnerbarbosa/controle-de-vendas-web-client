@@ -28,15 +28,19 @@ section {
   border-radius: 0px 5px 0px 0px;
 }
 
-input {
+#tab1 {
+  display: none;  
+}
+
+#tab2 {
   display: none;  
 }
 
 label {
-  display: inline-block;
+  display: inline;
   background: rgba(255, 255, 255, 0.6);
   margin: 0 0 -1px;
-  padding: 0.1% 20%;
+  padding: 0.1% 18.9%;
   font-weight: 600;
   text-align: center;
   color: #555;
@@ -83,6 +87,6 @@ input:checked + label {
 
 @media screen and (max-width: 400px) {
   label {
-    padding: 15px;
+    padding: 1%;
   }
 }
