@@ -93,7 +93,7 @@
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <p:poll interval="600" listener="#{barChartDataBean.atualizaVendas(barChartDataBean.date1, barChartDataBean.date2)}" update="poll" />
                                  </h:form>                               
-                            <p:dataTable draggableColumns="true"  id="poll" reflow="true" value="#{barChartDataBean.vendas}" var="s" style="width: 100%; padding: 0% 0% 0% 0%;" >
+                            <p:dataTable draggableColumns="true"  id="poll" reflow="true" value="#{barChartDataBean.getVendasByDate(barChartDataBean.date1, barChartDataBean.date2)}" var="s" style="width: 100%; padding: 0% 0% 0% 0%;" >
                                     <p:column headerText="FILIAL" style="text-align: center; font-size: 70%;" sortBy="#{s.branchNumber}">
                                         <h:outputText styleClass="text-lg-center" style="color: #0059bc; font-weight: bold;" value="#{s.branchNumber}"></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;">#</span></f:facet>

@@ -19,7 +19,7 @@
         <link jsf:name="contents/css/bootstrap.min.css" rel="stylesheet" href="contents/css/bootstrap.min.css" />        
         <link jsf:name="contents/css/mdb.min.css" rel="stylesheet" href="contents/css/mdb.min.css" />        
         <link jsf:name="contents/css/style.css" rel="stylesheet" href="contents/css/style.css" />
-        <f:event listener="${vendasResourceManagedBean.vendas}" type="preRenderView" />
+        <f:event listener="${vendasServiceManagedBean.sales}" type="preRenderView" />
 
     </head>
     <body jsf:id="body">
