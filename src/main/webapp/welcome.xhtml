@@ -1,9 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:ct="http://www.chartistjsf.org/charts"
-      xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://java.sun.com/jsf/core"     
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
     <head jsf:id="head">
 
         <meta charset="utf-8"/>
@@ -14,7 +14,6 @@
 
         <!-- Add to homescreen for Chrome on Android -->
         <meta name="mobile-web-app-capable" content="yes"/>
-
 
         <!-- Add to homescreen for Safari on iOS -->
         <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -29,15 +28,14 @@
         <!-- CSS -->
         <link jsf:name="contents/img/DB_16х16.png" rel="icon" type="image/png" href="contents/img/DB_16х16.png"/>
         <link jsf:name="contents/css/font-awesome.min.css" rel="stylesheet" href="contents/css/font-awesome.min.css" />        
-        <link jsf:name="contents/css/bootstrap.min.css" rel="stylesheet" href="contents/css/bootstrap.min.css" />        
-        <link jsf:name="contents/css/mdb.min.css" rel="stylesheet" href="contents/css/mdb.min.css" />        
+        <link jsf:name="contents/css/bootstrap.min.css" rel="stylesheet" href="contents/css/bootstrap.min.css" />                
         <link jsf:name="contents/css/style.css" rel="stylesheet" href="contents/css/style.css" />
         <link jsf:name="contents/css/lib/getmdl-select.min.css" rel="stylesheet" href="contents/css/lib/getmdl-select.min.css"/>
         <link jsf:name="contents/css/lib/nv.d3.css" rel="stylesheet" href="contents/css/lib/nv.d3.css"/>
         <link jsf:name="contents/css/application.css" rel="stylesheet" href="contents/css/application.css"/>
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900' rel='stylesheet' type='text/css'></link>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
-
+        <link jsf:name="contents/css/style2.css" rel="stylesheet" href="contents/css/style-tabs.css"/>
 
     </head> 
     <body jsf:id="body">
@@ -62,126 +60,113 @@
 
                         <li class="mdl-menu__item mdl-list__item" >
                             <a style="a:link { text-decoration:none;}" href="#{request.contextPath}/logout">
-                            <span class="mdl-list__item-primary-content" >
-                                <i class="material-icons mdl-list__item-icon text-color--secondary">exit_to_app</i>
-                                Log out
-                            </span>
+                                <span class="mdl-list__item-primary-content" >
+                                    <i class="material-icons mdl-list__item-icon text-color--secondary">exit_to_app</i>
+                                    Log out
+                                </span>
                             </a>    
                         </li>
                     </ul>
 
                 </div>
             </header>
-
             <main class="mdl-layout__content">
-                <h:form>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <p:poll interval="600" listener="#{barChartDataBean.atualizaVendas}" update="poll" />
-                </h:form>
-                <!-- Mapa de Vendas -->
-                <div class="box mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
-                    <div class="mdl-card  ">
-                            <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text" style="a:link, a:visited, a:hover, a:active {text-decoration: none}; font-weight: bold;">Mapa de Vendas</h2>
-                            </div>
-                        <div class="mdl-card__supporting-text ">
-                            <div style="margin-left: 2.5%; margin-top: 0%; margin-right: 0%; width: 98%;">
-                                <h:dataTable id="poll" class="table table-bordered table-striped table-sm" style="font-size: 84%;" value="#{barChartDataBean.vendas}" var="s" width="100%" >
-
-                                    <h:column>
-                                        <f:facet name="header"><span style="text-align: center;">FILIAL</span></f:facet>
-                                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;">#{s.branchNumber}</span>
+                
+                <input id="tab1" type="radio" name="tabs" checked="true"/>
+                <label for="tab1">Mapa de Vendas</label>
+                
+                <input id="tab2" type="radio" name="tabs"/>
+                <label for="tab2">Termômetro de Vendas</label>
+               
+                <section id="content1">
+                    <div class="box mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card  ">
+                            <ul class="mdl-card__title" style="padding-bottom: -1%; margin-bottom: -1%;">
+                                <h:form>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <li style="display: inline;">De <p:calendar id="data1" value="#{barChartDataBean.date1}" effect="fold" pattern="dd-MM-yyyy" mask="true"  locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;">até <p:calendar id="data2" value="#{barChartDataBean.date2}" effect="fold" pattern="dd-MM-yyyy" mask="true" locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;"><p:commandButton value="Atualizar" id="ajax" update="poll" actionListener="#{barChartDataBean.getVendasByDate(barChartDataBean.date1, barChartDataBean.date2)}" styleClass="ui-priority-primary" /></li>
+                                </h:form>
+                            </ul>
+                                 <h:form style="padding: 0% 0% 0% 0%; display: none;">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <p:poll interval="600" listener="#{barChartDataBean.atualizaVendas(barChartDataBean.date1, barChartDataBean.date2)}" update="poll" />
+                                 </h:form>                               
+                            <p:dataTable draggableColumns="true"  id="poll" reflow="true" value="#{barChartDataBean.vendas}" var="s" style="width: 100%; padding: 0% 0% 0% 0%;" >
+                                    <p:column headerText="FILIAL" style="text-align: center; font-size: 70%;" sortBy="#{s.branchNumber}">
+                                        <h:outputText styleClass="text-lg-center" style="color: #0059bc; font-weight: bold;" value="#{s.branchNumber}"></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;">#</span></f:facet>
-                                    </h:column>
+                                    </p:column>
 
-                                    <h:column>
-                                        <f:facet class="text-lg-center" name="header"><span style="text-align: center;">NOME FILIAL</span></f:facet>
-                                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;">#{s.trade}</span>
+                                    <p:column headerText="NOME FILIAL" style="text-align: center; font-size: 69%;" sortBy="#{s.trade}">
+                                        <h:outputText styleClass="text-lg-center" style="color: #0059bc; font-weight: bold;" value="#{s.trade}"></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;">TOTAIS</span></f:facet>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet class="text-lg-center" name="header">VALOR BRUTO PRODUTOS</f:facet>
-                                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.prodSaleTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
+                                    </p:column>
+                                    <p:column headerText="VAL. BRUTO PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodSaleTotal}">
+                                        <h:outputText styleClass="text-lg-right" style="color: #0059bc; font-weight: bold;" value="#{s.prodSaleTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodSaleTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet class="text-lg-center" name="header">TOTAL DEVOLVIDO PRODUTOS</f:facet>
-                                        <span class="text-lg-center" style="color: red; font-weight: bold;"><h:outputText value="#{s.prodDevolutionTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
+                                    </p:column>
+                                    <p:column headerText="TOTAL DEVOL. PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodDevolutionTotal}">
+                                        <h:outputText styleClass="text-lg-right" style="color: #0059bc; font-weight: bold;" value="#{s.prodDevolutionTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodDevolutionTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA PRODUTOS</f:facet>
-                                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.prodBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
+                                    </p:column>
+                                    <p:column headerText="VENDA LÍQ. PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodBalanceTotal}">
+                                        <h:outputText styleClass="text-lg-right" style="color: #0059bc; font-weight: bold;" value="#{s.prodBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA SERVIÇOS</f:facet>
+                                    </p:column>
+                                    <p:column headerText="VENDA LÍQ. SERV." style="text-align: center; font-size: 70%;" sortBy="#{s.servBalanceTotal}">
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.servBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.servBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA RECARGAS</f:facet>
+                                    </p:column>
+                                    <p:column headerText="VENDA LÍQ. RECARG." style="text-align: center; font-size: 70%;" sortBy="#{s.rechargeTotal}">
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.rechargeTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.rechargeTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet class="text-lg-center" name="header">VENDA LÍQUIDA TOTAL</f:facet>
-                                        <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.balanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
+                                    </p:column>
+                                    <p:column headerText="VENDA LÍQ. TOTAL" style="text-align: center; font-size: 70%;" sortBy="#{s.balanceTotal}">
+                                        <span style="color: #0059bc; font-weight: bold; text-align: right;"><h:outputText value="#{s.balanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.balanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
-                                    </h:column>
-                                </h:dataTable> 
-                            </div>                           
+                                    </p:column>
+                                </p:dataTable> 
                         </div>
-                    </div>
-                </div>                
-                    
-                    <!-- Pie chart-->
-                    <div class="box mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                        <div class="mdl-card mdl-shadow--2dp pie-chart">
-                            <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text" style="font-weight: bold;">Top 3 Filiais</h2>
-                            </div>
-                            <div class="mdl-card__supporting-text" >
-                                <div style="margin-left: 10%;">
-                                    <p:growl autoUpdate="true" />
-                                    <ct:chart id="pieChart" type="pie" model="#{pieChartDataBean.pieChartModel}" style="width:100%; height:45%" >
-                                        <p:ajax event="itemSelect" listener="#{pieChartDataBean.pieItemSelect}" />
-                                    </ct:chart>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div>                            
+                </section>
 
-                    <!-- Line chart-->
-                    <div class="box mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <section id="content2">
+                    <div class="box mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp line-chart">
                             <a href="#{request.contextPath}/graficos" ></a>
-                            <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text" style="font-weight: bold;">Termômetro de Vendas</h2>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                <div >
-                                    <ct:chart id="barChart" type="bar" model="#{barChartDataBean.barChartModel}" style="width:100%;">
-                                    </ct:chart>
-                                    <p:message id="barChartMessage" for="barChart" showDetail="true" />                                
-
-                                </div>
-                            </div>
+                            <ul class="mdl-card__title" style="padding-bottom: -1%; margin-bottom: -1%;">
+                                <h:form>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <li style="display: inline;">De <p:calendar id="data1" value="#{basicGChartController.date1}" effect="fold" pattern="dd-MM-yyyy" mask="true"  locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;">até <p:calendar id="data2" value="#{basicGChartController.date2}" effect="fold" pattern="dd-MM-yyyy" mask="true" locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;"><p:commandButton value="Atualizar" id="ajax" update="poll2" actionListener="#{basicGChartController.refreshModel(basicGChartController.date1, basicGChartController.date2)}" styleClass="ui-priority-primary" /></li>
+                                </h:form>
+                            </ul>
+                                 <h:form style="padding: 0% 0% 0% 0%; display: none;">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <p:poll interval="600" listener="#{basicGChartController.generateModel()}" update="poll2" />
+                                 </h:form>                            
+                                <p:panel>
+                                    <pe:gChart id="poll2" value="#{basicGChartController.chart}" width="1280" height="475">    
+                                    </pe:gChart> 
+                                </p:panel>                                                                     
                         </div>
                     </div>
-
+                </section>
             </main>
         </div>
-
+        
         <script jsf:name="contents/js/d3.js" type="text/javascript" src="contents/js/d3.js"/>
         <script jsf:name="contents/js/getmdl-select.min.js" type="text/javascript" src="contents/js/getmdl-select.min.js"/>
         <script jsf:name="contents/js/material.js" type="text/javascript" src="contents/js/material.js"/>
         <script jsf:name="contents/js/nv.d3.js" type="text/javascript" src="contents/js/nv.d3.js"/>
         <script jsf:name="contents/js/utils.js" type="text/javascript" src="contents/js/utils.js"/>       
-        <script jsf:name="contents/js/jquery-3.1.1.min.js" type="text/javascript" src="contents/js/jquery-3.1.1.min.js"/>
         <script jsf:name="contents/js/tether.min.js" type="text/javascript" src="contents/js/tether.min.js"/>
         <script jsf:name="contents/js/bootstrap.min.js" type="text/javascript" src="contents/js/bootstrap.min.js"/>
         <script jsf:name="contents/js/mdb.min.js" type="text/javascript" src="contents/js/mdb.min.js"/>
+        <script jsf:name="contents/js/locale.js" type="text/javascript" src="contents/js/locale.js"/>
 
     </body>
 </html>
