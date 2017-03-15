@@ -39,6 +39,11 @@
 
     </head> 
     <body jsf:id="body">
+                <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"  />
+			
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage url="/contents/img/ajaxloadingbar.gif" />
+        </p:dialog>
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
@@ -82,6 +87,7 @@
                     <div class="box mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card  ">
                             <ul class="mdl-card__title" style="padding-bottom: -1%; margin-bottom: -1%;">
+
                                 <h:form>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <li style="display: inline;">De <p:calendar id="data1" value="#{basicGChartController.initialDate}" effect="fold" pattern="dd-MM-yyyy" mask="true"  locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
@@ -105,27 +111,27 @@
                                     </p:column>
                                     <p:column headerText="VAL. BRUTO PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodSaleTotal}">
                                         <h:outputText styleClass="text-lg-right" style="color: #0059bc; font-weight: bold;" value="#{s.prodSaleTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodSaleTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.prodSaleTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                     <p:column headerText="TOTAL DEVOL. PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodDevolutionTotal}">
-                                        <h:outputText styleClass="text-lg-right" style="color: #0059bc; font-weight: bold;" value="#{s.prodDevolutionTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodDevolutionTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <h:outputText styleClass="text-lg-right" style="color: #FF1744; font-weight: bold;" value="#{s.prodDevolutionTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.prodDevolutionTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                     <p:column headerText="VENDA LÍQ. PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodBalanceTotal}">
                                         <h:outputText styleClass="text-lg-right" style="color: #0059bc; font-weight: bold;" value="#{s.prodBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.prodBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.prodBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                     <p:column headerText="VENDA LÍQ. SERV." style="text-align: center; font-size: 70%;" sortBy="#{s.servBalanceTotal}">
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.servBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.servBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.servBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                     <p:column headerText="VENDA LÍQ. RECARG." style="text-align: center; font-size: 70%;" sortBy="#{s.rechargeTotal}">
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.rechargeTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.rechargeTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.rechargeTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                     <p:column headerText="VENDA LÍQ. TOTAL" style="text-align: center; font-size: 70%;" sortBy="#{s.balanceTotal}">
                                         <span style="color: #0059bc; font-weight: bold; text-align: right;"><h:outputText value="#{s.balanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{barChartDataBean.vendas.stream().map(s->s.balanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.balanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                 </p:dataTable> 
                         </div>
