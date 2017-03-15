@@ -84,16 +84,16 @@
                             <ul class="mdl-card__title" style="padding-bottom: -1%; margin-bottom: -1%;">
                                 <h:form>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <li style="display: inline;">De <p:calendar id="data1" value="#{barChartDataBean.date1}" effect="fold" pattern="dd-MM-yyyy" mask="true"  locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
-                                <li style="display: inline;">até <p:calendar id="data2" value="#{barChartDataBean.date2}" effect="fold" pattern="dd-MM-yyyy" mask="true" locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
-                                <li style="display: inline;"><p:commandButton value="Atualizar" id="ajax" update="poll" actionListener="#{barChartDataBean.getVendasByDate(barChartDataBean.date1, barChartDataBean.date2)}" styleClass="ui-priority-primary" /></li>
+                                <li style="display: inline;">De <p:calendar id="data1" value="#{basicGChartController.initialDate}" effect="fold" pattern="dd-MM-yyyy" mask="true"  locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;">até <p:calendar id="data2" value="#{basicGChartController.finalDate}" effect="fold" pattern="dd-MM-yyyy" mask="true" locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;"><p:commandButton value="Atualizar" id="ajax" update="poll" actionListener="#{basicGChartController.getSalesByDate(basicGChartController.initialDate, basicGChartController.finalDate)}" styleClass="ui-priority-primary" /></li>
                                 </h:form>
                             </ul>
                                  <h:form style="padding: 0% 0% 0% 0%; display: none;">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <p:poll interval="600" listener="#{barChartDataBean.atualizaVendas(barChartDataBean.date1, barChartDataBean.date2)}" update="poll" />
+                                    <p:poll interval="600" listener="#{basicGChartController.sales}" update="poll" />
                                  </h:form>                               
-                            <p:dataTable draggableColumns="true"  id="poll" reflow="true" value="#{barChartDataBean.getVendasByDate(barChartDataBean.date1, barChartDataBean.date2)}" var="s" style="width: 100%; padding: 0% 0% 0% 0%;" >
+                            <p:dataTable draggableColumns="true"  id="poll" reflow="true" value="#{basicGChartController.sales}" var="s" style="width: 100%; padding: 0% 0% 0% 0%;" >
                                     <p:column headerText="FILIAL" style="text-align: center; font-size: 70%;" sortBy="#{s.branchNumber}">
                                         <h:outputText styleClass="text-lg-center" style="color: #0059bc; font-weight: bold;" value="#{s.branchNumber}"></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;">#</span></f:facet>
@@ -139,9 +139,9 @@
                             <ul class="mdl-card__title" style="padding-bottom: -1%; margin-bottom: -1%;">
                                 <h:form>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <li style="display: inline;">De <p:calendar id="data1" value="#{basicGChartController.date1}" effect="fold" pattern="dd-MM-yyyy" mask="true"  locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
-                                <li style="display: inline;">até <p:calendar id="data2" value="#{basicGChartController.date2}" effect="fold" pattern="dd-MM-yyyy" mask="true" locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
-                                <li style="display: inline;"><p:commandButton value="Atualizar" id="ajax" update="poll2" actionListener="#{basicGChartController.refreshModel(basicGChartController.date1, basicGChartController.date2)}" styleClass="ui-priority-primary" /></li>
+                                <li style="display: inline;">De <p:calendar id="data1" value="#{basicGChartController.initialDate}" effect="fold" pattern="dd-MM-yyyy" mask="true"  locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;">até <p:calendar id="data2" value="#{basicGChartController.finalDate}" effect="fold" pattern="dd-MM-yyyy" mask="true" locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;"><p:commandButton value="Atualizar" id="ajax" update="poll2" actionListener="#{basicGChartController.refreshModel(basicGChartController.initialDate, basicGChartController.finalDate)}" styleClass="ui-priority-primary" /></li>
                                 </h:form>
                             </ul>
                                  <h:form style="padding: 0% 0% 0% 0%; display: none;">
@@ -167,6 +167,7 @@
         <script jsf:name="contents/js/bootstrap.min.js" type="text/javascript" src="contents/js/bootstrap.min.js"/>
         <script jsf:name="contents/js/mdb.min.js" type="text/javascript" src="contents/js/mdb.min.js"/>
         <script jsf:name="contents/js/locale.js" type="text/javascript" src="contents/js/locale.js"/>
+        <script jsf:name="contents/js/pace.min.js" type="text/javascript" src="contents/js/pace.min.js"/>
 
     </body>
 </html>
