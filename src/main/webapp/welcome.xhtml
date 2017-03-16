@@ -90,16 +90,16 @@
 
                                 <h:form>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <li style="display: inline;">De <p:calendar id="data1" value="#{basicGChartController.initialDate}" effect="fold" pattern="dd-MM-yyyy" mask="true"  locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
-                                <li style="display: inline;">até <p:calendar id="data2" value="#{basicGChartController.finalDate}" effect="fold" pattern="dd-MM-yyyy" mask="true" locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
-                                <li style="display: inline;"><p:commandButton value="Atualizar" id="ajax" update="poll" actionListener="#{basicGChartController.getSalesByDate(basicGChartController.initialDate, basicGChartController.finalDate)}" styleClass="ui-priority-primary" /></li>
+                                <li style="display: inline;">De <p:calendar id="data1" value="#{homeGChartController.initialDate}" effect="fold" pattern="dd-MM-yyyy" mask="true"  locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;">até <p:calendar id="data2" value="#{homeGChartController.finalDate}" effect="fold" pattern="dd-MM-yyyy" mask="true" locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;"><p:commandButton value="Atualizar" id="ajax" update="poll" actionListener="#{homeGChartController.getSalesByDate(homeGChartController.initialDate, homeGChartController.finalDate)}" styleClass="ui-priority-primary" /></li>
                                 </h:form>
                             </ul>
                                  <h:form style="padding: 0% 0% 0% 0%; display: none;">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <p:poll interval="600" listener="#{basicGChartController.sales}" update="poll" />
+                                    <p:poll interval="600" listener="#{homeGChartController.sales}" update="poll" />
                                  </h:form>                               
-                            <p:dataTable draggableColumns="true"  id="poll" reflow="true" value="#{basicGChartController.sales}" var="s" style="width: 100%; padding: 0% 0% 0% 0%;" >
+                            <p:dataTable draggableColumns="true"  id="poll" reflow="true" value="#{homeGChartController.sales}" var="s" style="width: 100%; padding: 0% 0% 0% 0%;" >
                                     <p:column headerText="FILIAL" style="text-align: center; font-size: 70%;" sortBy="#{s.branchNumber}">
                                         <h:outputText styleClass="text-lg-center" style="color: #0059bc; font-weight: bold;" value="#{s.branchNumber}"></h:outputText>
                                         <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;">#</span></f:facet>
@@ -111,27 +111,27 @@
                                     </p:column>
                                     <p:column headerText="VAL. BRUTO PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodSaleTotal}">
                                         <h:outputText styleClass="text-lg-right" style="color: #0059bc; font-weight: bold;" value="#{s.prodSaleTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.prodSaleTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{homeGChartController.sales.stream().map(s->s.prodSaleTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                     <p:column headerText="TOTAL DEVOL. PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodDevolutionTotal}">
                                         <h:outputText styleClass="text-lg-right" style="color: #FF1744; font-weight: bold;" value="#{s.prodDevolutionTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.prodDevolutionTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{homeGChartController.sales.stream().map(s->s.prodDevolutionTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                     <p:column headerText="VENDA LÍQ. PROD." style="text-align: center; font-size: 70%;" sortBy="#{s.prodBalanceTotal}">
                                         <h:outputText styleClass="text-lg-right" style="color: #0059bc; font-weight: bold;" value="#{s.prodBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.prodBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{homeGChartController.sales.stream().map(s->s.prodBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                     <p:column headerText="VENDA LÍQ. SERV." style="text-align: center; font-size: 70%;" sortBy="#{s.servBalanceTotal}">
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.servBalanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.servBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{homeGChartController.sales.stream().map(s->s.servBalanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                     <p:column headerText="VENDA LÍQ. RECARG." style="text-align: center; font-size: 70%;" sortBy="#{s.rechargeTotal}">
                                         <span class="text-lg-center" style="color: #0059bc; font-weight: bold;"><h:outputText value="#{s.rechargeTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.rechargeTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{homeGChartController.sales.stream().map(s->s.rechargeTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                     <p:column headerText="VENDA LÍQ. TOTAL" style="text-align: center; font-size: 70%;" sortBy="#{s.balanceTotal}">
                                         <span style="color: #0059bc; font-weight: bold; text-align: right;"><h:outputText value="#{s.balanceTotal}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span>
-                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{basicGChartController.sales.stream().map(s->s.balanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
+                                        <f:facet name="footer"><span class="text-lg-center" style="font-weight: bold;"><h:outputText value="#{homeGChartController.sales.stream().map(s->s.balanceTotal).sum()}"><f:convertNumber pattern="#,##0.00" minFractionDigits="2"/></h:outputText></span></f:facet>
                                     </p:column>
                                 </p:dataTable> 
                         </div>
@@ -145,17 +145,17 @@
                             <ul class="mdl-card__title" style="padding-bottom: -1%; margin-bottom: -1%;">
                                 <h:form>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <li style="display: inline;">De <p:calendar id="data1" value="#{basicGChartController.initialDate}" effect="fold" pattern="dd-MM-yyyy" mask="true"  locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
-                                <li style="display: inline;">até <p:calendar id="data2" value="#{basicGChartController.finalDate}" effect="fold" pattern="dd-MM-yyyy" mask="true" locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
-                                <li style="display: inline;"><p:commandButton value="Atualizar" id="ajax" update="poll2" actionListener="#{basicGChartController.refreshModel(basicGChartController.initialDate, basicGChartController.finalDate)}" styleClass="ui-priority-primary" /></li>
+                                <li style="display: inline;">De <p:calendar id="data1" value="#{homeGChartController.initialDate}" effect="fold" pattern="dd-MM-yyyy" mask="true"  locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;">até <p:calendar id="data2" value="#{homeGChartController.finalDate}" effect="fold" pattern="dd-MM-yyyy" mask="true" locale="pt_BR" showOn="button" mindate="01-08-2015"/></li>
+                                <li style="display: inline;"><p:commandButton value="Atualizar" id="ajax" update="poll2" actionListener="#{homeGChartController.refreshModel(homeGChartController.initialDate, homeGChartController.finalDate)}" styleClass="ui-priority-primary" /></li>
                                 </h:form>
                             </ul>
                                  <h:form style="padding: 0% 0% 0% 0%; display: none;">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <p:poll interval="600" listener="#{basicGChartController.generateModel()}" update="poll2" />
+                                    <p:poll interval="600" listener="#{homeGChartController.generateModel()}" update="poll2" />
                                  </h:form>                            
                                 <p:panel>
-                                    <pe:gChart id="poll2" value="#{basicGChartController.chart}" width="1280" height="475">    
+                                    <pe:gChart id="poll2" value="#{homeGChartController.chart}" width="1280" height="475">    
                                     </pe:gChart> 
                                 </p:panel>                                                                     
                         </div>

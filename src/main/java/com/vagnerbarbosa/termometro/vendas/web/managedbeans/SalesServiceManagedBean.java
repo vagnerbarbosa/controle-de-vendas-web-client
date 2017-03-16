@@ -11,19 +11,18 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.NoneScoped;
 import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @RequestScoped
-public class VendasServiceManagedBean implements Serializable {
+public class SalesServiceManagedBean implements Serializable {
 
     private ObjectMapper mapper = new ObjectMapper();
     private List<Sales> sales = null;
     private Date initialDate = new Date(System.currentTimeMillis());
     private Date finalDate = new Date(System.currentTimeMillis());
 
-    public VendasServiceManagedBean() {
+    public SalesServiceManagedBean() {
     }
 
     public List<Sales> getSales() throws IOException {

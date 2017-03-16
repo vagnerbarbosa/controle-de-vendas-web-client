@@ -18,7 +18,7 @@ import org.primefaces.extensions.component.gchart.model.GChartType;
 
 @ManagedBean
 @RequestScoped
-public class BasicGChartController implements Serializable {
+public class HomeGChartController implements Serializable {
 
     private static final long serialVersionUID = 253762400419864192L;
     private List<Sales> sales = null;
@@ -27,7 +27,7 @@ public class BasicGChartController implements Serializable {
     private Date initialDate = new Date(System.currentTimeMillis());
     private Date finalDate = new Date(System.currentTimeMillis());
     
-    public VendasServiceManagedBean vendasServiceManagedBean = new VendasServiceManagedBean();
+    public SalesServiceManagedBean salesServiceManagedBean = new SalesServiceManagedBean();
 
     public GChartModel getChart() {
         return chartModel;
@@ -101,7 +101,7 @@ public class BasicGChartController implements Serializable {
                             getSales().get(19).getServDevolutionTotal() + getSales().get(19).getProdDevolutionTotal()
                     ).build();
         } catch (IOException ex) {
-            Logger.getLogger(BasicGChartController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeGChartController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -174,7 +174,7 @@ public class BasicGChartController implements Serializable {
                             vendasAtual.get(19).getServDevolutionTotal() + vendasAtual.get(19).getProdDevolutionTotal()
                     ).build();
         } catch (IOException ex) {
-            Logger.getLogger(BasicGChartController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeGChartController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -188,7 +188,7 @@ public class BasicGChartController implements Serializable {
                  
     public List<Sales> getSales() throws IOException {
         List<Sales> salesSession = (List<Sales>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("salesList");
-        List<Sales> salesAux = vendasServiceManagedBean.getSales();
+        List<Sales> salesAux = salesServiceManagedBean.getSales();
         if (salesSession == null) {
         this.sales = salesAux;
         } else {this.sales = salesSession; }
@@ -196,7 +196,7 @@ public class BasicGChartController implements Serializable {
     }
         
     public List<Sales> getSalesByDate(Date initialDate, Date finalDate) throws IOException {
-        this.sales = vendasServiceManagedBean.getSalesByDate(initialDate, finalDate);
+        this.sales = salesServiceManagedBean.getSalesByDate(initialDate, finalDate);
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("salesList", this.sales);
         return sales;
         
