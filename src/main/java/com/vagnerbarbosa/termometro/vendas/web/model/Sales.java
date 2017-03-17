@@ -214,10 +214,10 @@ public class Sales implements Comparable<Sales> {
 
     @Override
     public int compareTo(Sales sales) {
-        if (this.balanceTotal < sales.balanceTotal) {
+        if (this.branchNumber > sales.branchNumber) {
             return 1;
         }
-        if (this.balanceTotal > sales.balanceTotal) {
+        if (this.branchNumber < sales.branchNumber) {
             return -1;
         }
         return 0;
