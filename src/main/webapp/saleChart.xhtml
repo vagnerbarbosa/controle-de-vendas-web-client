@@ -42,7 +42,7 @@
 
 
     </head> 
-    <body jsf:id="body">
+    <body jsf:id="body">       
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
             <header class="mdl-layout__header">
@@ -79,73 +79,81 @@
                 <!-- Mapa de Vendas -->
                 <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                     <div class="mdl-card  ">
-                        <a href="#{request.contextPath}/controle" >
-                            <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text" style="a:link, a:visited, a:hover, a:active {text-decoration: none}">(#{surname}) Acompanhamento de Pedidos e Montagens</h2>
-                            </div></a>
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text" style="a:link, a:visited, a:hover, a:active {text-decoration: none}">(#{surname}) Acompanhamento de Pedidos e Montagens
+                                <rich:panel>
+                                    <ul>
+                                        <li><span>Número Total de Pedidos:</span> #{controlePedidosManagedBean.pedidos.size()}</li>
+                                        <li><span>Número Total de Entregas Pendentes:</span> #{controlePedidosResourceManagedBean.getEntregasPendentes(filial)}</li>
+                                        <li><span>Número Total de Montagens Pendentes:</span> #{controlePedidosResourceManagedBean.getMontagensPendentes(filial)}</li>
+                                        <li><span>Número Total de Faturamentos Pendentes:</span> #{controlePedidosResourceManagedBean.getFaturametosPendentes(filial)}</li>
+                                    </ul>
+                                </rich:panel>
+                            </h2>
+                        </div>
                         <div class="mdl-card__supporting-text ">
 
                             <rich:dataTable var="pedido" value="#{controlePedidosManagedBean.pedidos}" style="width: 100%; margin-left: 1.5%;">
-                                    <f:facet name="header">
-                                        <rich:columnGroup>
-                                            <rich:column colspan="6">
-                                            </rich:column>
-                                        </rich:columnGroup>
-                                    </f:facet>
+                                <f:facet name="header">
+                                    <rich:columnGroup>
+                                        <rich:column colspan="6">
+                                        </rich:column>
+                                    </rich:columnGroup>
+                                </f:facet>
 
-                                    <rich:column colspan="1" style="background-color: #C0C0C0; color: white; font-weight: bold;" >
-                                        <h:outputText value="PEDIDO: " /><h:outputText value="#{pedido.idSalesOrder}" />
-                                    </rich:column>
-                                    <rich:column colspan="1" style="background-color: #C0C0C0; color: white; font-weight: bold;">
-                                        <h:outputText value="DATA: " /><h:outputText value="#{pedido.movingDate}" ><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
-                                    </rich:column>
-                                    <rich:column colspan="1" style="background-color: #C0C0C0; color: white; font-weight: bold;">
-                                        <h:outputText value="CLIENTE: " /><h:outputText value="#{pedido.clientName}" />
-                                    </rich:column>
-                                    <rich:column colspan="1" style="background-color: #C0C0C0; color: white; font-weight: bold;">
-                                        <h:outputText value="CIDADE: " /><h:outputText value="#{pedido.city}" />
-                                    </rich:column>                                    
-                                    <rich:column colspan="1" style="background-color: #C0C0C0; color: white; font-weight: bold;">
-                                        <h:outputText value="BAIRRO: " /><h:outputText value="#{pedido.neighborhood}" />
-                                    </rich:column>
-                                    <rich:column colspan="1" styleClass="#{controlePedidosManagedBean.getDaysRowcolor(pedido.days) ? 'row-highlight-color' : 'row-normal-color'}" style="text-align: center; color: white; font-weight: bold;" >
-                                        <h:outputText value="#{pedido.days}"  /><h:outputText value=" DIA(S)"/>
-                                    </rich:column>                                    
+                                <rich:column colspan="1" style="background-color: #C0C0C0; color: white; font-weight: bold;" >
+                                    <h:outputText value="PEDIDO: " /><h:outputText value="#{pedido.idSalesOrder}" />
+                                </rich:column>
+                                <rich:column colspan="1" style="background-color: #C0C0C0; color: white; font-weight: bold;">
+                                    <h:outputText value="DATA: " /><h:outputText value="#{pedido.movingDate}" ><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+                                </rich:column>
+                                <rich:column colspan="1" style="background-color: #C0C0C0; color: white; font-weight: bold;">
+                                    <h:outputText value="CLIENTE: " /><h:outputText value="#{pedido.clientName}" />
+                                </rich:column>
+                                <rich:column colspan="1" style="background-color: #C0C0C0; color: white; font-weight: bold;">
+                                    <h:outputText value="CIDADE: " /><h:outputText value="#{pedido.city}" />
+                                </rich:column>                                    
+                                <rich:column colspan="1" style="background-color: #C0C0C0; color: white; font-weight: bold;">
+                                    <h:outputText value="BAIRRO: " /><h:outputText value="#{pedido.neighborhood}" />
+                                </rich:column>
+                                <rich:column colspan="1" styleClass="#{controlePedidosManagedBean.getDaysRowcolor(pedido.days) ? 'row-highlight-color' : 'row-normal-color'}" style="text-align: center; color: white; font-weight: bold;" >
+                                    <h:outputText value="#{pedido.days}"  /><h:outputText value=" DIA(S)"/>
+                                </rich:column>                                    
 
-                                    <rich:collapsibleSubTable var="produto" value="#{pedido.products}">
-                                        <rich:column colspan="1" style="#{controlePedidosManagedBean.getBranchRowColor(produto.branchNumberToInvoice, pedido.branchNumber, produto.situationChargerMap)}">
-                                            <h:outputText value="F" /><h:outputText value="#{produto.branchNumberToInvoice}" />
-                                            <f:facet name="footer">
-                                                <div />
-                                            </f:facet>
+                                <rich:collapsibleSubTable var="produto" value="#{pedido.products}">
+                                    <rich:column colspan="1" style="#{controlePedidosManagedBean.getBranchRowColor(produto.branchNumberToInvoice, pedido.branchNumber, produto.situationChargerMap)}">
+                                        <h:outputText value="F" /><h:outputText value="#{produto.branchNumberToInvoice}" />
+                                        <f:facet name="footer">
+                                            <div />
+                                        </f:facet>
+                                    </rich:column>
+                                    <rich:column colspan="2" style="#{controlePedidosManagedBean.getBranchRowColor(produto.branchNumberToInvoice, pedido.branchNumber, produto.situationChargerMap)} font-weight: bold;">
+                                        <h:outputText value="#{produto.prodId} - "/><h:outputText value="#{produto.prodDescription}"/>
+                                    </rich:column>
+                                    <rich:column colspan="1" style="#{controlePedidosManagedBean.getSituationChargerMapRowColor(produto.itemSituation)}; font-weight: bold;">
+                                        <h:outputText value="#{produto.itemSituation}">
+                                        </h:outputText>                                            
+                                    </rich:column>
+                                    <rich:column colspan="1" style="#{controlePedidosManagedBean.getDeliveriRowColor(produto.deliverSituation)}; font-weight: bold;">
+                                        <h:outputText value="#{produto.deliverSituation}">
+                                        </h:outputText>                                            
+                                    </rich:column >
+                                    <rich:column colspan="1" style="#{controlePedidosManagedBean.getMontageRowColor(produto.montageSituation)}; font-weight: bold;">
+                                        <h:outputText value="#{produto.montageSituation}">
+                                        </h:outputText>                                            
+                                    </rich:column>                                            
+                                </rich:collapsibleSubTable>
+                                <f:facet name="footer">
+                                    <rich:columnGroup>
+                                        <rich:column colspan="6">
                                         </rich:column>
-                                        <rich:column colspan="2" style="#{controlePedidosManagedBean.getBranchRowColor(produto.branchNumberToInvoice, pedido.branchNumber, produto.situationChargerMap)} font-weight: bold;">
-                                            <h:outputText value="#{produto.prodId} - "/><h:outputText value="#{produto.prodDescription}"/>
-                                        </rich:column>
-                                        <rich:column colspan="1" style="#{controlePedidosManagedBean.getSituationChargerMapRowColor(produto.itemSituation)}; font-weight: bold;">
-                                            <h:outputText value="#{produto.itemSituation}">
-                                            </h:outputText>                                            
-                                        </rich:column>
-                                        <rich:column colspan="1" style="#{controlePedidosManagedBean.getDeliveriRowColor(produto.deliverSituation)}; font-weight: bold;">
-                                            <h:outputText value="#{produto.deliverSituation}">
-                                            </h:outputText>                                            
-                                        </rich:column >
-                                        <rich:column colspan="1" style="#{controlePedidosManagedBean.getMontageRowColor(produto.montageSituation)}; font-weight: bold;">
-                                            <h:outputText value="#{produto.montageSituation}">
-                                            </h:outputText>                                            
-                                        </rich:column>                                            
-                                    </rich:collapsibleSubTable>
-                                    <f:facet name="footer">
-                                        <rich:columnGroup>
-                                            <rich:column colspan="6">
-                                            </rich:column>
-                                        </rich:columnGroup>
-                                    </f:facet>
-                                </rich:dataTable>
-                             
+                                    </rich:columnGroup>
+                                </f:facet>
+                            </rich:dataTable>
+
                         </div>
                     </div>
-                </div>                
+                </div>                                   
 
             </main>
         </div>

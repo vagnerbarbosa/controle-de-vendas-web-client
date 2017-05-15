@@ -30,6 +30,7 @@ public class ControlePedidosResourceManagedBean implements Serializable {
     
     public List<SalesOrder> getPedidos(Integer filial) throws IOException {
         List<SalesOrder> resultado = null;
+        Integer salesCount = null;
         if (resultado == null) {
         Client c = Client.create();
         listSalesOrder = new ArrayList<>();
@@ -37,14 +38,16 @@ public class ControlePedidosResourceManagedBean implements Serializable {
         
         //user = userService.findBySSO("john");
 
-        WebResource wr1 = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales-order/" + filial);
+        WebResource wr1 = c.resource("http://192.168.19.250:8080/riodopeixe-rest/webservice/sales-order/" + filial);
         String jsonSales = wr1.get(String.class);
 
-        WebResource wr2 = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales-order/products/" + filial);
+        WebResource wr2 = c.resource("http://192.168.19.250:8080/riodopeixe-rest/webservice/sales-order/products/" + filial);
         String jsonProducts = wr2.get(String.class);
 
         listSalesOrder = mapper.readValue(jsonSales, mapper.getTypeFactory().constructCollectionType(List.class, SalesOrder.class));
         listSalesProducts = mapper.readValue(jsonProducts, mapper.getTypeFactory().constructCollectionType(List.class, Product.class));
+        
+        salesCount = listSalesOrder.size();
 
         for (int i = 0; i < listSalesOrder.size(); i++) {
             prdAux = new ArrayList<>();
@@ -61,6 +64,51 @@ public class ControlePedidosResourceManagedBean implements Serializable {
         resultado = (List<SalesOrder>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("salesOrder", listSalesOrder); 
         }
         return resultado;
-    }   
+    }
+    
+    public Integer getEntregasPendentes(Integer filial) throws IOException {
+        List<SalesOrder> eux = this.getPedidos(filial);
+        Integer retorno = 0;
+        
+        for (int i = 0; i < eux.size(); i++) {
+            for (int j = 0; j < eux.get(i).getProducts().size(); j++) {
+                        if ("Entrega Pendente".equals(eux.get(i).getProducts().get(j).getDeliverSituation())){
+            retorno++;
+                        }
+            }
+
+        }        
+     return retorno;
+    }
+    
+    public Integer getMontagensPendentes(Integer filial) throws IOException {
+        List<SalesOrder> eux = this.getPedidos(filial);
+        Integer retorno = 0;
+        
+        for (int i = 0; i < eux.size(); i++) {
+            for (int j = 0; j < eux.get(i).getProducts().size(); j++) {
+                        if ("Montagem Pendente".equals(eux.get(i).getProducts().get(j).getMontageSituation())){
+            retorno++;
+                        }
+            }
+
+        }        
+     return retorno;
+    }  
+    
+    public Integer getFaturametosPendentes(Integer filial) throws IOException {
+        List<SalesOrder> eux = this.getPedidos(filial);
+        Integer retorno = 0;
+        
+        for (int i = 0; i < eux.size(); i++) {
+            for (int j = 0; j < eux.get(i).getProducts().size(); j++) {
+                        if ("Fechado".equals(eux.get(i).getProducts().get(j).getItemSituation())){
+            retorno++;
+                        }
+            }
+
+        }        
+     return retorno;
+    }    
     
 }

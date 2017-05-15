@@ -34,8 +34,8 @@ public class ControlePedidosManagedBean implements Serializable {
         if ((branchNumberToInvoice != branchNumber) & (!"Faturado".equals(situationChargerMap)) ) {
             colorFlag = "color: red; font-weight: bold;";
         } else if ((branchNumberToInvoice != branchNumber) & ("Faturado".equals(situationChargerMap)) ) {
-            colorFlag = "color: black;";
-        }
+            colorFlag = "color: blue; font-weight: bold;";
+        } else {colorFlag = "color: black;";}
          
         return colorFlag;
     }
@@ -77,6 +77,8 @@ public class ControlePedidosManagedBean implements Serializable {
     public String getSituationChargerMapRowColor(String situationChargerMap) {
         String colorFlag = null;
         if ("A Faturar".equals(situationChargerMap)) {
+            colorFlag = "background-color: #f4ff81;";
+        } else if ("Fechado".equals(situationChargerMap)) {
             colorFlag = "background-color: #f4ff81;";
         } else {colorFlag = "background-color: #DEE8F6"; }
          

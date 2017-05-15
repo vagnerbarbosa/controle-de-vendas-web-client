@@ -28,7 +28,7 @@ public class SalesServiceManagedBean implements Serializable {
     public List<Sales> getSales() throws IOException {
         if (this.sales == null) {
             Client c = Client.create();
-            WebResource wr = c.resource("http://192.168.19.250:8080/sales-weather/webservice/sales/");
+            WebResource wr = c.resource("http://192.168.19.250:8080/riodopeixe-rest/webservice/sales/");
             String json = wr.get(String.class);
             this.sales = (List<Sales>) mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(List.class, Sales.class));
         }
