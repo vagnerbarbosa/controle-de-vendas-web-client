@@ -80,16 +80,16 @@
                 <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                     <div class="mdl-card  ">
                         <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text" style="a:link, a:visited, a:hover, a:active {text-decoration: none}">(#{surname}) Acompanhamento de Pedidos e Montagens
-                                <rich:panel>
-                                    <ul>
-                                        <li><span>Número Total de Pedidos:</span> #{controlePedidosManagedBean.pedidos.size()}</li>
-                                        <li><span>Número Total de Entregas Pendentes:</span> #{controlePedidosResourceManagedBean.getEntregasPendentes(filial)}</li>
-                                        <li><span>Número Total de Montagens Pendentes:</span> #{controlePedidosResourceManagedBean.getMontagensPendentes(filial)}</li>
-                                        <li><span>Número Total de Faturamentos Pendentes:</span> #{controlePedidosResourceManagedBean.getFaturametosPendentes(filial)}</li>
-                                    </ul>
+                            
+                                <rich:panel header="(#{surname}) Acompanhamento de Pedidos e Montagens" style="width: 100%;">
+                                    
+                                    <span class="text-success" style="font-size: 120%; padding-right: 1%; padding-left: 25%;">Total de Pedidos: #{controlePedidosManagedBean.pedidos.size()}</span>
+                                        <span class="text-warning" style="font-size: 120%; padding-right: 1%;">Entregas Pendentes: #{controlePedidosResourceManagedBean.getEntregasPendentes(filial)}</span> 
+                                        <span class="text-info" style="font-size: 120%; padding-right: 1%;">Montagens Pendentes: #{controlePedidosResourceManagedBean.getMontagensPendentes(filial)}</span> 
+                                        <span class="text-danger" style="font-size: 120%; padding-right: 25%;">Faturamentos Pendentes: #{controlePedidosResourceManagedBean.getFaturametosPendentes(filial)}</span>
+                                    
                                 </rich:panel>
-                            </h2>
+                            
                         </div>
                         <div class="mdl-card__supporting-text ">
 

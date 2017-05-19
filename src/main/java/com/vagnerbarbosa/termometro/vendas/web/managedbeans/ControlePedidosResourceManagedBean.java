@@ -67,7 +67,7 @@ public class ControlePedidosResourceManagedBean implements Serializable {
     }
     
     public Integer getEntregasPendentes(Integer filial) throws IOException {
-        List<SalesOrder> eux = this.getPedidos(filial);
+        List<SalesOrder> eux = (List<SalesOrder>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("salesOrder");
         Integer retorno = 0;
         
         for (int i = 0; i < eux.size(); i++) {
@@ -82,7 +82,7 @@ public class ControlePedidosResourceManagedBean implements Serializable {
     }
     
     public Integer getMontagensPendentes(Integer filial) throws IOException {
-        List<SalesOrder> eux = this.getPedidos(filial);
+        List<SalesOrder> eux = (List<SalesOrder>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("salesOrder");
         Integer retorno = 0;
         
         for (int i = 0; i < eux.size(); i++) {
@@ -97,7 +97,7 @@ public class ControlePedidosResourceManagedBean implements Serializable {
     }  
     
     public Integer getFaturametosPendentes(Integer filial) throws IOException {
-        List<SalesOrder> eux = this.getPedidos(filial);
+        List<SalesOrder> eux = (List<SalesOrder>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("salesOrder");
         Integer retorno = 0;
         
         for (int i = 0; i < eux.size(); i++) {
