@@ -19,6 +19,7 @@
         <link jsf:name="contents/css/bootstrap.min.css" rel="stylesheet" href="contents/css/bootstrap.min.css" />        
         <link jsf:name="contents/css/mdb.min.css" rel="stylesheet" href="contents/css/mdb.min.css" />        
         <link jsf:name="contents/css/style.css" rel="stylesheet" href="contents/css/style.css" />
+        <link jsf:name="contents/css/pace-theme-barber-shop.css" rel="stylesheet" href="contents/css/pace-theme-barber-shop.css"/>
         <f:event listener="${salesServiceManagedBean.sales}" type="preRenderView" />
 
     </head>
@@ -100,6 +101,7 @@
         <script type="text/javascript" src="contents/js/tether.min.js"></script>
         <script type="text/javascript" src="contents/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="contents/js/mdb.min.js"></script>                                
+        <script type="text/javascript" src="contents/js/pace.min.js"></script>
 
     </body>
 </html>

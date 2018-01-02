@@ -97,7 +97,7 @@
                             </ul>
                                  <h:form style="padding: 0% 0% 0% 0%; display: none;">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <p:poll interval="600" listener="#{homeGChartController.sales}" update="poll" />
+                                    <p:poll interval="60" listener="#{homeGChartController.getSalesByDate(homeGChartController.initialDate, homeGChartController.finalDate)}" update="poll" />
                                  </h:form>                               
                             <p:dataTable draggableColumns="true"  id="poll" reflow="true" value="#{homeGChartController.sales}" var="s" style="width: 100%; padding: 0% 0% 0% 0%;" >
                                     <p:column headerText="FILIAL" style="text-align: center; font-size: 70%;" sortBy="#{s.branchNumber}">

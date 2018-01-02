@@ -1,6 +1,7 @@
 package com.vagnerbarbosa.termometro.vendas.web.model;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.Objects;
 
@@ -10,7 +11,7 @@ import java.util.Objects;
  */
 public class Product implements Serializable {
 
-    private Integer itemBaseId;
+    private BigInteger itemBaseId;
     private Integer prodId; //idproduto   
     private Integer branchNumberToInvoice; //filialreserva  
     private String prodDescription; //desc__prod
@@ -29,11 +30,11 @@ public class Product implements Serializable {
     private String idMontageSituation; //idsituacaomontagem
     private Integer idSaleOrder;
 
-    public Integer getItemBaseId() {
+    public BigInteger getItemBaseId() {
         return itemBaseId;
     }
 
-    public void setItemBaseId(Integer itemBaseId) {
+    public void setItemBaseId(BigInteger itemBaseId) {
         this.itemBaseId = itemBaseId;
     }
 
