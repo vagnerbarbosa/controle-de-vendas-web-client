@@ -1,4 +1,4 @@
-# termometro-vendas-web
+# Termometro Vendas Web
 termometro-vendas-web
 
 ----------------------------------------------------------------------------
