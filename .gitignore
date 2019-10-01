@@ -2,6 +2,7 @@
 /nb-configuration.xml
 /target/
 .project/
+.settings/
 
 # Windows image file caches
 Thumbs.db
