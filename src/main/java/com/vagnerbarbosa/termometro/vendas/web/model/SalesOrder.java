@@ -7,7 +7,7 @@ import java.util.Objects;
 
 /**
  *
- * @author vagner
+ * @author Vagner Barbosa
  */
 public class SalesOrder implements Serializable {
     
