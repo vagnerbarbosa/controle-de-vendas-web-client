@@ -1,5 +1,5 @@
-# Termometro Vendas Web
-termometro-vendas-web
+# Controle de Vendas Web Client
+controle-de-vendas-web-client
 
 ----------------------------------------------------------------------------
 
