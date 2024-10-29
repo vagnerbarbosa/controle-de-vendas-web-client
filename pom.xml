@@ -17,7 +17,7 @@
         <jsp.api.version>2.2</jsp.api.version>
         <jstl.version>1.2</jstl.version> 
         <springframework.version>6.1.13</springframework.version>
-        <springsecurity.version>5.4.11</springsecurity.version>
+        <springsecurity.version>5.7.13</springsecurity.version>
         <hibernate.version>5.4.24.Final</hibernate.version>       
     </properties> 
     
